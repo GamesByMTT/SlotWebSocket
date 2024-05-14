@@ -6,9 +6,10 @@ import { generateMatrix } from "./utils";
 
 export function sendInitdata(clientID : string)
 {
+    console.log("intiation");
     makePayLines();
     const matrix = generateMatrix(gameSettings.matrix.x, 18);
-    let bonus=new bonusGame(6,1000,60);
+    let bonus=new bonusGame(8,1000);
 
     for(let i = 0; i < 3; i++)
     {

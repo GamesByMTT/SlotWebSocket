@@ -3,13 +3,12 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.bonusGame = void 0;
 var Global_1 = require("./Global");
 var bonusGame = /** @class */ (function () {
-    function bonusGame(nosOfItem, totalPay, minPercent) {
+    function bonusGame(nosOfItem, totalPay) {
         this.noOfItems = nosOfItem;
         this.type = "default";
         this.totalPay = totalPay;
         this.result = [];
-        this.minPay = Math.floor(minPercent * this.totalPay);
-        this.noise = minPercent;
+        // this.noise=noise;
     }
     // generateData(){
     //     let tempSum=0;
@@ -42,6 +41,7 @@ var bonusGame = /** @class */ (function () {
         var res = [];
         var sum = 0;
         var part = Math.floor(this.totalPay / (this.noOfItems - 1));
+        this.noise = Math.floor(part / (this.noOfItems - 1));
         // this.noise=Math.abs(part/2);
         // if(part<this.minPay){
         //     for (let i = 0; i < this.noOfItems-3; i++) {
@@ -63,8 +63,10 @@ var bonusGame = /** @class */ (function () {
             sum += part;
         }
         for (var i = 0; i < res.length; i++) {
-            var j = Math.floor(Math.random() * (i + 1));
-            var deviation = Math.floor(Math.random() * this.noise);
+            var min = this.noise * i > 0 ? this.noise * i : this.noise;
+            var max = this.noise * (i + 1);
+            var j = res.length - 1 - i;
+            var deviation = Math.floor(Math.random() * (max - min) + min);
             res[i] -= deviation;
             res[j] += deviation;
         }

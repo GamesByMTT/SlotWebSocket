@@ -8,13 +8,12 @@ export class bonusGame{
     noise:number;
     minPay:number;
 
-    constructor(nosOfItem:number, totalPay:number, minPercent:number) {
+    constructor(nosOfItem:number, totalPay:number) {
         this.noOfItems=nosOfItem;
         this.type="default";
         this.totalPay=totalPay;
         this.result=[];
-        this.minPay=Math.floor(minPercent*this.totalPay);
-        this.noise=minPercent;
+        // this.noise=noise;
     }
     // generateData(){
     //     let tempSum=0;
@@ -50,7 +49,7 @@ export class bonusGame{
         let sum = 0;
         
         let part=Math.floor(this.totalPay/(this.noOfItems-1));
-
+        this.noise=Math.floor(part/(this.noOfItems-1));
         // this.noise=Math.abs(part/2);
         // if(part<this.minPay){
         //     for (let i = 0; i < this.noOfItems-3; i++) {
@@ -76,8 +75,10 @@ export class bonusGame{
             }
 
         for (let i = 0; i < res.length; i++) {
-            let j = Math.floor(Math.random() * (i+1));
-            let deviation=Math.floor(Math.random()*this.noise);
+            let min=this.noise*i >0? this.noise*i: this.noise;
+            let max=this.noise*(i+1);
+            let j = res.length-1-i;
+            let deviation=Math.floor(  Math.random()*(max -min) +min );
             res[i]-=deviation;
             res[j]+=deviation;
             
