@@ -8,7 +8,7 @@ export function sendInitdata(clientID : string)
 {
     makePayLines();
     const matrix = generateMatrix(gameSettings.matrix.x, 18);
-    let bonus=new bonusGame(5,1000,50);
+    let bonus=new bonusGame(6,1000,60);
 
     for(let i = 0; i < 3; i++)
     {

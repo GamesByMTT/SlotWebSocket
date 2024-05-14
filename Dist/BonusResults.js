@@ -64,11 +64,13 @@ var bonusGame = /** @class */ (function () {
         }
         for (var i = 0; i < res.length; i++) {
             var j = Math.floor(Math.random() * (i + 1));
-            var deviation = Math.floor(Math.random() * this.noise * (i + 1));
+            var deviation = Math.floor(Math.random() * this.noise);
             res[i] -= deviation;
             res[j] += deviation;
         }
-        res.push((this.totalPay - sum));
+        // res.push((this.totalPay - sum));
+        var diff = this.totalPay - sum;
+        res[Math.floor(Math.random() * res.length)] += diff;
         res.push("-1");
         this.shuffle(res);
         for (var i = 0; i < res.length; i++) {

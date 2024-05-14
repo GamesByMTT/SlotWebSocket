@@ -77,12 +77,14 @@ export class bonusGame{
 
         for (let i = 0; i < res.length; i++) {
             let j = Math.floor(Math.random() * (i+1));
-            let deviation=Math.floor(Math.random()*this.noise*(i+1));
+            let deviation=Math.floor(Math.random()*this.noise);
             res[i]-=deviation;
             res[j]+=deviation;
             
         }
-        res.push((this.totalPay - sum));
+        // res.push((this.totalPay - sum));
+        let diff=this.totalPay-sum;
+        res[Math.floor(Math.random()*res.length)]+=diff;
         res.push("-1");
         this.shuffle(res);
 
